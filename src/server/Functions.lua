@@ -3,20 +3,36 @@
 local module = {}
 
 function module.ChooseLobisomem()
-    local lobisomem = game.Players:GetPlayers() [math.random(1, #game.Players:GetPlayers())]
+	local lobisomem = game.Players:GetPlayers() [math.random(1, #game.Players:GetPlayers())]
 
-    local sword = game.ReplicatedStorage.ClassicSword
-    sword:Clone().Parent = lobisomem.Backpack
+	local sword = game.ReplicatedStorage.ClassicSword
+	sword:Clone().Parent = lobisomem.Backpack
 
 end
 
 function module.TPplayers()
-    for i, v in pairs(game.Players:GetPlayers()) do
-        local character = v.Character
-        if character then
-            character.HumanoidRootPart.CFrame = workspace.Map.TPpart.CFrame
-        end
-    end
+	for i, v in pairs(game.Players:GetPlayers()) do
+		local character = v.Character
+		if character then
+			character.HumanoidRootPart.CFrame = workspace.Map.TPpart.CFrame
+		end
+	end
 end
 
-return module
+function module.TPplayersBack()
+	for i, v in pairs(game.Players:GetPlayers()) do
+		v: FindFirstChild('Backpack'):ClearAllChildren()
+		local character = v.Character
+		for _, tools in pairs(character:GetChildren()) do
+			if tool:IsA('Tool') then
+				tool:Destroy()
+			end
+		end
+
+		if character then
+			character.HumanoidRootPart.CFrame = workspace.SpawnLocation.CFrame
+		end
+	end
+	end
+
+	return module

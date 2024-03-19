@@ -1,3 +1,4 @@
+local Players = game:GetService("Players")
 --local Module =  require(game.ServerScriptService.Server.DayNight)--
 local module =  require(script:WaitForChild('Functions'))
 
@@ -9,9 +10,13 @@ function startround()
 	module.TPplayers()
 end
 
+function endRound()
+	module.TPplayersBack()
+end
+
 while wait() do
 	wait()
-	repeat wait(.5) until game.Players.NumPlayers >=4
+	repeat wait(0.5) until game.Players.NumPlayers >= 1
 	for i = 10,0,-1 do
 		print(i)
 		wait(i)
@@ -23,4 +28,6 @@ while wait() do
 		print(i)
 		wait(i)
 	end
+
+	endRound()
 end
