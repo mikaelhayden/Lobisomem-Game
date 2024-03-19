@@ -8,6 +8,24 @@ function module.ChooseLobisomem()
 	local sword = game.ReplicatedStorage.ClassicSword
 	sword:Clone().Parent = lobisomem.Backpack
 
+	local val = Instance.new('BoolValue')
+	val.Name = "LobisomemValue"
+	val.Parent = lobisomem
+
+	wait()
+
+	for i, v in pairs(game.Players:GetPlayers()) do
+		if v:FindFirstChild('LobisomemValue') then
+			v.PlayerGui.Main.Lobisomem.Visible = true
+			wait(2)
+			v.PlayerGui.Main.Lobisomem.Visible = false
+		else
+			v.PlayerGui.Main.Vitima.Visible = true
+			wait(2)
+			v.PlayerGui.Main.Vitima.Visible = false
+		end
+	end
+
 end
 
 function module.TPplayers()
@@ -23,7 +41,7 @@ function module.TPplayersBack()
 	for i, v in pairs(game.Players:GetPlayers()) do
 		v: FindFirstChild('Backpack'):ClearAllChildren()
 		local character = v.Character
-		for _, tools in pairs(character:GetChildren()) do
+		for _, tool in pairs(character:GetChildren()) do
 			if tool:IsA('Tool') then
 				tool:Destroy()
 			end

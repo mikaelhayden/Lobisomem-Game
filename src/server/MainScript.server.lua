@@ -1,6 +1,8 @@
 local Players = game:GetService("Players")
 --local Module =  require(game.ServerScriptService.Server.DayNight)--
 local module =  require(script:WaitForChild('Functions'))
+local status = game.ReplicatedStorage:WaitForChild('Status')
+
 
 --Module.CicleDay()--------
 
@@ -10,23 +12,32 @@ function startround()
 	module.TPplayers()
 end
 
-function endRound()
+function endRound(player)
+	for i, v in pairs(game.Players:GetPlayers()) do
+		if v:FindFirstChild('LobisomemValue') then
+			v.LobisomemValue:Destroy()
+		end
+	end
 	module.TPplayersBack()
 end
 
+local time1 = 10
+local time2 = 20
+
 while wait() do
-	wait()
-	repeat wait(0.5) until game.Players.NumPlayers >= 1
-	for i = 10,0,-1 do
-		print(i)
-		wait(i)
+	status.Value = '4 Players needed to start a game'
+
+	repeat wait(0.2) until game.Players.NumPlayers >= 2
+	for i = time1,0,-1 do
+		status.Value = 'Starting in '..i..' seconds '
+		wait(1)
 	end
 
 	startround()
 
-	for i = 20, 0, -1 do 
-		print(i)
-		wait(i)
+	for i = time2, 0, -1 do 
+		status.Value = i..' seconds left'
+		wait(1)
 	end
 
 	endRound()
