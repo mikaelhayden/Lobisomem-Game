@@ -1,10 +1,7 @@
 local Players = game:GetService("Players")
---local Module =  require(game.ServerScriptService.Server.DayNight)--
 local module =  require(script:WaitForChild('Functions'))
 local status = game.ReplicatedStorage:WaitForChild('Status')
 
-
---Module.CicleDay()--------
 
 function startround()
 	module.ChooseLobisomem()
@@ -22,7 +19,7 @@ function endRound(player)
 end
 
 local time1 = 10
-local time2 = 20
+local time2 = 10
 
 while wait() do
 	status.Value = '4 Players needed to start a game'
@@ -39,6 +36,7 @@ while wait() do
 		status.Value = i..' seconds left'
 		wait(1)
 	end
+	
 
 	endRound()
 end
