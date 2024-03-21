@@ -27,7 +27,7 @@ local time2 = 20
 while wait() do
 	status.Value = '4 Players needed to start a game'
 
-	repeat wait(0.2) until game.Players.NumPlayers >= 2
+	repeat wait(0.2) until game.Players.NumPlayers >= 1
 	for i = time1,0,-1 do
 		status.Value = 'Starting in '..i..' seconds '
 		wait(1)
